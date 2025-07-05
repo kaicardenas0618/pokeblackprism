@@ -7,7 +7,11 @@
 #include "graphics.h"
 #include "menu.h"
 
-const u8 gTextWindowFrame1_Gfx[] = INCBIN_U8("graphics/text_window/1.4bpp");
+#if VERSION_BLACK
+const u8 gTextWindowFrame1_Gfx[] = INCBIN_U8("graphics/text_window/1_black.4bpp");
+#elif VERSION_WHITE
+const u8 gTextWindowFrame1_Gfx[] = INCBIN_U8("graphics/text_window/1_white.4bpp");
+#endif
 static const u8 sTextWindowFrame2_Gfx[] = INCBIN_U8("graphics/text_window/2.4bpp");
 static const u8 sTextWindowFrame3_Gfx[] = INCBIN_U8("graphics/text_window/3.4bpp");
 static const u8 sTextWindowFrame4_Gfx[] = INCBIN_U8("graphics/text_window/4.4bpp");
@@ -28,7 +32,12 @@ static const u8 sTextWindowFrame18_Gfx[] = INCBIN_U8("graphics/text_window/18.4b
 static const u8 sTextWindowFrame19_Gfx[] = INCBIN_U8("graphics/text_window/19.4bpp");
 static const u8 sTextWindowFrame20_Gfx[] = INCBIN_U8("graphics/text_window/20.4bpp");
 
-const u16 gTextWindowFrame1_Pal[] = INCBIN_U16("graphics/text_window/1.gbapal");
+#if VERSION_BLACK
+const u16 gTextWindowFrame1_Pal[] = INCBIN_U16("graphics/text_window/1_black.gbapal");
+#elif VERSION_WHITE
+const u16 gTextWindowFrame1_Pal[] = INCBIN_U16("graphics/text_window/1_white.gbapal");
+#endif
+
 static const u16 sTextWindowFrame2_Pal[] = INCBIN_U16("graphics/text_window/2.gbapal");
 static const u16 sTextWindowFrame3_Pal[] = INCBIN_U16("graphics/text_window/3.gbapal");
 static const u16 sTextWindowFrame4_Pal[] = INCBIN_U16("graphics/text_window/4.gbapal");
@@ -51,7 +60,11 @@ static const u16 sTextWindowFrame20_Pal[] = INCBIN_U16("graphics/text_window/20.
 
 static const u16 sTextWindowPalettes[][16] =
 {
-    INCBIN_U16("graphics/text_window/message_box.gbapal"),
+    #if VERSION_BLACK
+    INCBIN_U16("graphics/text_window/message_box_black.gbapal"),
+    #elif VERSION_WHITE
+    INCBIN_U16("graphics/text_window/message_box_white.gbapal"),
+    #endif
     INCBIN_U16("graphics/text_window/text_pal1.gbapal"),
     INCBIN_U16("graphics/text_window/text_pal2.gbapal"),
     INCBIN_U16("graphics/text_window/text_pal3.gbapal"),

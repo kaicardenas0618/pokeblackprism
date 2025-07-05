@@ -1204,10 +1204,16 @@ static void StartMenu_LoadBgGfx(void) {
   ScheduleBgCopyTilemapToVram(0);
 }
 
+#if VERSION_BLACK
+static const u8 sTextColors[3] = {10, 11, 12}; // background, text, shadow
+#elif VERSION_WHITE
+static const u8 sTextColors[3] = {1, 2, 3}; // background, text, shadow
+#endif
+
 static void StartMenu_ShowMapNameWindow(void)
 {
     sStartMenu->sMapNameWindowId = AddWindow(&sWindowTemplate_MapName);
-    FillWindowPixelBuffer(sStartMenu->sMapNameWindowId, PIXEL_FILL(TEXT_COLOR_WHITE));
+    FillWindowPixelBuffer(sStartMenu->sMapNameWindowId, PIXEL_FILL(sTextColors[0]));
     PutWindowTilemap(sStartMenu->sMapNameWindowId);
 
     u8 mapName[MAP_NAME_LENGTH + 1];
@@ -1220,7 +1226,7 @@ static void StartMenu_ShowMapNameWindow(void)
     if (xOffset < 3)
         xOffset = 3;
 
-    AddTextPrinterParameterized(sStartMenu->sMapNameWindowId, FONT_NORMAL, mapName, xOffset, 1, TEXT_SKIP_DRAW, NULL);
+    AddTextPrinterParameterized3(sStartMenu->sMapNameWindowId, FONT_NORMAL, xOffset, 1, sTextColors, TEXT_SKIP_DRAW, mapName);
     CopyWindowToVram(sStartMenu->sMapNameWindowId, COPYWIN_GFX);
 }
 
@@ -1307,8 +1313,6 @@ static const u8 gText_Flag[]    = _("   Retire");
 
 static void StartMenu_UpdateMenuName(void)
 {
-    static const u8 sTextColors[3] = {1, 2, 3}; // background, text, shadow
-
     FillWindowPixelBuffer(sStartMenu->sMenuNameWindowId, PIXEL_FILL(sTextColors[0]));
     PutWindowTilemap(sStartMenu->sMenuNameWindowId);
 
